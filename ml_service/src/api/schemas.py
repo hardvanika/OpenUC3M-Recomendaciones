@@ -1,17 +1,17 @@
-# FastAPI Side: src/api/schemas.py
+# ml_service/src/api/schemas.py
 from pydantic import BaseModel, Field
 from typing import List, Optional
 
 class CandidatePost(BaseModel):
     post_id: int
-    text: Optional[str] = ""
+    """ text: Optional[str] = ""
     is_author_my_connection: int = 0
     number_of_comments: float = 0.0
     likes_count: float = 0.0
     freshness: float = 0.0
     same_campus: int = 0
     is_author_verified: int = 0
-    is_author_shadowbanned: int = 0
+    is_author_shadowbanned: int = 0 """
 
 class RankedFeedRequest(BaseModel):
     user_id: int
@@ -26,3 +26,10 @@ class RankedFeedResponse(BaseModel):
 class HealthCheckResponse(BaseModel):
     status: str
     model_loaded: bool
+
+# --- NEW: Ingestion Schema ---
+class DatasetIngestResponse(BaseModel):
+    status: str
+    filename: str
+    rows_processed: int
+    message: str
